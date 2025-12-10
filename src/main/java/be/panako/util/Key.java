@@ -152,6 +152,18 @@ public enum Key{
 	 */
 	OLAF_STORAGE("LMDB"), 
 	/**
+	 * JDBC URL for Postgres storage (e.g., jdbc:postgresql://host:port/db)
+	 */
+	OLAF_POSTGRES_URL("jdbc:postgresql://localhost:5432/panaku"),
+	/**
+	 * JDBC user for Postgres storage
+	 */
+	OLAF_POSTGRES_USER("panaku"),
+	/**
+	 * JDBC password for Postgres storage
+	 */
+	OLAF_POSTGRES_PASSWORD("panaku"),
+	/**
 	 * The folder to store the LMDB database
 	 */
 	OLAF_LMDB_FOLDER("~/.panako/dbs/olaf_db"), 
