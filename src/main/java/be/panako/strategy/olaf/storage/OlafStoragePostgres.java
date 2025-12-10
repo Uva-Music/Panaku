@@ -23,7 +23,7 @@ import java.util.*;
  */
 public class OlafStoragePostgres implements OlafStorage {
 
-    private static OlafStoragePostgres instance;
+    private static volatile OlafStoragePostgres instance;
     private static final Object mutex = new Object();
 
     private final HikariDataSource dataSource;
@@ -32,9 +32,13 @@ public class OlafStoragePostgres implements OlafStorage {
     private final Map<Long, List<long[]>> deleteQueue;
     private final Map<Long, List<Long>> queryQueue;
 
-    public static synchronized OlafStoragePostgres getInstance() {
+    public static OlafStoragePostgres getInstance() {
         if (instance == null) {
-            instance = new OlafStoragePostgres();
+            synchronized (mutex) {
+                if (instance == null) {
+                    instance = new OlafStoragePostgres();
+                }
+            }
         }
         return instance;
     }
