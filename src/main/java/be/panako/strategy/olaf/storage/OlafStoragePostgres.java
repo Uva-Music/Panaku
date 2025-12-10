@@ -313,4 +313,14 @@ public class OlafStoragePostgres implements OlafStorage {
             throw new RuntimeException(e);
         }
     }
+    
+    /**
+     * Closes the HikariCP connection pool and releases all database resources.
+     * Should be called when the storage is no longer needed (e.g., application shutdown).
+     */
+    public void close() {
+        if (dataSource != null && !dataSource.isClosed()) {
+            dataSource.close();
+        }
+    }
 }
