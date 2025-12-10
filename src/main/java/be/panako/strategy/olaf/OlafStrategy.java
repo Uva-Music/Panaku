@@ -79,6 +79,8 @@ public class OlafStrategy extends Strategy {
 				db = OlafStorageKV.getInstance();
 			}else if (Config.get(Key.OLAF_STORAGE).equalsIgnoreCase("FILE")) {
 				db = OlafStorageFile.getInstance();
+			}else if (Config.get(Key.OLAF_STORAGE).equalsIgnoreCase("POSTGRES")) {
+				db = OlafStoragePostgres.getInstance();
 			}else {
 				db = OlafStorageMemory.getInstance();
 			}

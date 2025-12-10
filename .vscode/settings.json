@@ -1,0 +1,6 @@
+{
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "gradle.java.home": "/home/lucas-suares/.asdf/installs/java/openjdk-17.0.2",
+  "java.import.gradle.java.home": "/home/lucas-suares/.asdf/installs/java/openjdk-17.0.2",
+  "java.compile.nullAnalysis.mode": "automatic"
+}

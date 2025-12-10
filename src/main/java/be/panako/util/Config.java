@@ -124,23 +124,20 @@ public class Config {
 	    }
 	}
 	
-	/*
+	/**
 	 * Write the current configuration values to disk.
-	
+	 */
 	public void saveCurrentConfigration(){
 		Properties prop = new Properties();
 		try {
-			//Set the default properties value.
 			for(Key key : Key.values()){
 				prop.setProperty(key.name(), Config.get(key));
 			}
-			//Save the properties to the configuration file.
 			prop.store(new FileOutputStream(configrationFileName), null);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 	    }
 	}
-	 */
 
 
 	/**
@@ -228,6 +225,11 @@ public class Config {
 	public static void set(Key key, String value) {
 		HashMap<Key,String> store = getInstance().configrationStore;
 		store.put(key, value);
+	}
+
+	/** Persist the current configuration values to disk. */
+	public static void persist(){
+		getInstance().saveCurrentConfigration();
 	}
 	
 	/**
