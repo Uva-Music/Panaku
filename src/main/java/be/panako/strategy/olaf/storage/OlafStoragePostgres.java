@@ -123,9 +123,11 @@ public class OlafStoragePostgres implements OlafStorage {
                     m.path = rs.getString(1);
                     m.duration = rs.getFloat(2);
                     m.numFingerprints = rs.getInt(3);
+                    conn.commit();
                     return m;
                 }
             }
+            conn.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -281,6 +283,7 @@ public class OlafStoragePostgres implements OlafStorage {
                 System.out.printf("> Max prints per second: %5.1ffp/s '%s'\n", maxPps, maxPpsPath);
                 System.out.printf("=========================\n\n");
             }
+            conn.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
