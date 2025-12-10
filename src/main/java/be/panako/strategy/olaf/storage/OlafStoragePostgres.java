@@ -41,6 +41,15 @@ public class OlafStoragePostgres implements OlafStorage {
         String url = Config.get(Key.OLAF_POSTGRES_URL);
         String user = Config.get(Key.OLAF_POSTGRES_USER);
         String password = Config.get(Key.OLAF_POSTGRES_PASSWORD);
+        if (url == null || url.trim().isEmpty()) {
+            throw new RuntimeException("Missing or empty configuration for OLAF_POSTGRES_URL");
+        }
+        if (user == null || user.trim().isEmpty()) {
+            throw new RuntimeException("Missing or empty configuration for OLAF_POSTGRES_USER");
+        }
+        if (password == null || password.trim().isEmpty()) {
+            throw new RuntimeException("Missing or empty configuration for OLAF_POSTGRES_PASSWORD");
+        }
         try {
             conn = DriverManager.getConnection(url, user, password);
             conn.setAutoCommit(false);
