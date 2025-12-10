@@ -32,11 +32,7 @@ public class OlafStoragePostgres implements OlafStorage {
 
     public static synchronized OlafStoragePostgres getInstance() {
         if (instance == null) {
-            synchronized (mutex) {
-                if (instance == null) {
-                    instance = new OlafStoragePostgres();
-                }
-            }
+            instance = new OlafStoragePostgres();
         }
         return instance;
     }
