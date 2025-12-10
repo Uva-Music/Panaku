@@ -21,7 +21,7 @@ import java.util.*;
  */
 public class OlafStoragePostgres implements OlafStorage {
 
-    private static OlafStoragePostgres instance;
+    private static volatile OlafStoragePostgres instance;
     private static final Object mutex = new Object();
 
     private final Connection conn;
