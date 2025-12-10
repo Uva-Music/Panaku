@@ -24,7 +24,7 @@ public class OlafStoragePostgres implements OlafStorage {
     private static OlafStoragePostgres instance;
     private static final Object mutex = new Object();
 
-    private final Connection conn;
+    private Connection conn;
 
     private final Map<Long, List<long[]>> storeQueue;
     private final Map<Long, List<long[]>> deleteQueue;
@@ -64,14 +64,17 @@ public class OlafStoragePostgres implements OlafStorage {
 
     /**
      * Close the database connection and clean up resources.
+     * This method is thread-safe and can be called multiple times safely.
      */
-    public void close() {
+    public synchronized void close() {
         if (conn != null) {
             try {
                 conn.close();
             } catch (SQLException e) {
                 // Log or handle the exception if needed
                 System.err.println("Error closing PostgreSQL connection: " + e.getMessage());
+            } finally {
+                conn = null;
             }
         }
     }
