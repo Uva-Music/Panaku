@@ -62,6 +62,20 @@ public class OlafStoragePostgres implements OlafStorage {
         queryQueue = new HashMap<>();
     }
 
+    /**
+     * Close the database connection and clean up resources.
+     */
+    public void close() {
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                // Log or handle the exception if needed
+                System.err.println("Error closing PostgreSQL connection: " + e.getMessage());
+            }
+        }
+    }
+
     private void ensureSchema() throws SQLException {
         try (Statement st = conn.createStatement()) {
             st.executeUpdate("CREATE TABLE IF NOT EXISTS fingerprints (" +
